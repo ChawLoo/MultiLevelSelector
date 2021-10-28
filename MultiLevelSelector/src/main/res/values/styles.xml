@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 水平分割线 -->
+    <style name="divider_horizontal">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0.1dp</item>
+        <item name="android:background">#E8E8E8</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+</resources>
