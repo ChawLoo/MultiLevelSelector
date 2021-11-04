@@ -45,6 +45,11 @@ dependencies {
 	第一版上线了，目前应用于自家项目，也经过测试，欢迎引用
 
 ### 例子预览
-
+1. 整体预览
+![image](https://github.com/ChawLoo/MultiLevelSelector/blob/master/screenshot/%E6%95%B4%E4%BD%93%E6%BC%94%E7%A4%BA.gif)
+2. 单List截图
+![image](https://github.com/ChawLoo/MultiLevelSelector/blob/master/screenshot/%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E7%BA%A7%E9%80%89%E6%8B%A9.png)
+3. 多级列表
+![image](https://github.com/ChawLoo/MultiLevelSelector/blob/master/screenshot/%E7%9C%81%E5%B8%82%E5%8C%BA%E5%AD%90%E9%9B%86%E6%A8%A1%E5%BC%8F.png)
 ### 打赏（您的支持是我持续更新的动力）
 ![image](https://user-images.githubusercontent.com/26214519/139214994-71b782c2-7a42-4e66-8819-364fdb76e420.png)
