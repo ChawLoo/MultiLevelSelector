@@ -1,5 +1,5 @@
 buildscript {
-    val kotlinVer by extra("1.5.31")
+    extra["kotlinVer"] = "1.5.31"
     repositories {
         maven(url = "https://maven.aliyun.com/repository/central")
         maven(url = "https://maven.aliyun.com/repository/public")
@@ -28,6 +28,7 @@ allprojects {
         mavenCentral()
     }
 }
-tasks.register("clean", Delete::class) {
+task<Delete>("clean") {
+    group = "build"
     delete(rootProject.buildDir)
 }

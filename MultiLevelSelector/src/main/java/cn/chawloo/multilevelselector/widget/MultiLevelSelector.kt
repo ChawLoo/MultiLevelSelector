@@ -15,12 +15,15 @@ import cn.chawloo.multilevelselector.databinding.MultiLevelSelectorBinding
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
-class MultiLevelSelector<T : MultiLevelSelector.IMultiLevelEntity> @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyle: Int = 0
+const val TYPE_ONLY_ONE_LIST_MODE = 0//同一级列表
+const val TYPE_CHILDREN_NEXT_MODE = 1//包含下一级列表模式
+
+class MultiLevelSelector<T : MultiLevelSelector.IMultiLevelEntity<T>> @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyle: Int = 0
 ) : LinearLayout(context, attrs, defStyle) {
     private var vb: MultiLevelSelectorBinding = MultiLevelSelectorBinding.bind(inflate(context, R.layout.multi_level_selector, this))
+    var type: Int = TYPE_ONLY_ONE_LIST_MODE
+
     private var breadCrumbsColor: Int = Color.parseColor("#2c80c5")
     private var breadCrumbsTextSize: Int = sp2px(12F)
     private var mMenuAdapter: BaseAdapter<T> = object : BaseAdapter<T>(R.layout.item_multi_level_selector_head) {
@@ -32,12 +35,13 @@ class MultiLevelSelector<T : MultiLevelSelector.IMultiLevelEntity> @JvmOverloads
             for (i in data.size downTo position + 1) {
                 removeAt(i - 1)
                 selectCategoryArr.removeAt(i - 1)
-                var catId: Long = -1
-                if (position > 0) {
-                    catId = getItem(position - 1).id
+                val next = if (position > 0) {
+                    val item = getItem(position - 1)
+                    getNext(item)
+                } else {
+                    getNext()
                 }
-                val next = getNext(catId)
-                next.takeIf { it.isNotEmpty() }?.run {
+                next?.takeIf { it.isNotEmpty() }?.run {
                     changeOptions(this)
                 }
             }
@@ -53,7 +57,11 @@ class MultiLevelSelector<T : MultiLevelSelector.IMultiLevelEntity> @JvmOverloads
         setOnItemClickListener { _, _, position ->
             if (System.currentTimeMillis() - clickTime > 300) {
                 val selectItem = getItem(position)
-                val list = getNext(selectItem.id)
+                val list = if (type == TYPE_ONLY_ONE_LIST_MODE) {
+                    getNext(selectItem)
+                } else {
+                    selectItem.next
+                }
                 val hasNext = !list.isNullOrEmpty()
                 if (!checkRepeat(selectItem)) {
                     selectCategoryArr.add(selectItem)
@@ -79,20 +87,35 @@ class MultiLevelSelector<T : MultiLevelSelector.IMultiLevelEntity> @JvmOverloads
     private var sourceData: List<T> = ArrayList()
 
     fun setData(data: List<T>, onConfirm: (ArrayList<T>) -> Unit) {
+        mMenuAdapter.setList(null)
+        selectCategoryArr.clear()
         sourceData = data
-        val list = getNext(-1)
-        list.takeIf { it.isNotEmpty() }?.run {
+        val list = if (type == TYPE_ONLY_ONE_LIST_MODE) {
+            getNext()
+        } else {
+            sourceData
+        }
+        list?.takeIf { it.isNotEmpty() }?.run {
             mOptionsAdapter.setList(list)
         }
         this.onConfirm = onConfirm
     }
 
-    fun getData(): List<T> {
-        return sourceData
-    }
+    private fun getNext(item: T? = null): List<T>? {
+        return if (item != null) {
+            if (type == TYPE_CHILDREN_NEXT_MODE) {
+                item.next
+            } else {
+                sourceData.filter { it.lastId == item.id }
+            }
+        } else {
+            if (type == TYPE_CHILDREN_NEXT_MODE) {
+                sourceData
+            } else {
+                sourceData.filter { it.lastId == -1L }
+            }
+        }
 
-    private fun getNext(id: Long): List<T> {
-        return sourceData.filter { it.lastId == id }
     }
 
     var checkRepeat: (T) -> Boolean = {
@@ -139,15 +162,8 @@ class MultiLevelSelector<T : MultiLevelSelector.IMultiLevelEntity> @JvmOverloads
         vb.rvOptions.adapter = mOptionsAdapter
     }
 
-    private fun changeOptions(list: List<T>) {
+    private fun changeOptions(list: List<T>?) {
         mOptionsAdapter.setList(list)
-    }
-
-    interface IMultiLevelEntity {
-        var id: Long
-        var lastId: Long
-        var showTxt: String
-        var isNew: Boolean
     }
 
     private fun dp2px(dp: Float): Int {
@@ -158,5 +174,13 @@ class MultiLevelSelector<T : MultiLevelSelector.IMultiLevelEntity> @JvmOverloads
     private fun sp2px(sp: Float): Int {
         val scale: Float = context.resources.displayMetrics.scaledDensity
         return (sp * scale + 0.5f).toInt()
+    }
+
+    interface IMultiLevelEntity<T> {
+        var id: Long
+        var lastId: Long
+        var showTxt: String
+        var isNew: Boolean
+        val next: List<T>?
     }
 }

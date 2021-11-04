@@ -1,8 +1,9 @@
 plugins {
     id("com.android.library")
     kotlin("android")
+    id("signing")
+    `maven-publish`
 }
-
 android {
     compileSdk = 31
 

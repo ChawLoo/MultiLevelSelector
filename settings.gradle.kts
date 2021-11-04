@@ -1,3 +1,3 @@
 rootProject.name = "MultiLevelSelector"
-include(":app")
+include(":example")
 include(":MultiLevelSelector")
