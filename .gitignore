@@ -19,3 +19,4 @@ local.properties
 /build/
 /.idea/
 /Chawloo_0x0893AABB_public.gpg
+/secring.gpg

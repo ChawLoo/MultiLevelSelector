@@ -41,8 +41,8 @@ object TempData {
             }
             return dataList
         } else {
-            val data = JSONArray.parseArray(TempData.area, Area::class.java)
-            TempData.setRandomItemIsNew(data)
+            val data = JSONArray.parseArray(area, Area::class.java)
+            setRandomItemIsNew(data)
             return data
         }
     }
