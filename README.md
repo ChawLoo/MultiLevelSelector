@@ -52,17 +52,17 @@ dependencies {
 
   所有N级列表均为同一级列表，例如：
 
-  ``` json
-  [
-      {
-          "id":1,
-          "lastId":-1
-      },
-      {
-          "id":12,
-          "lastId":1
-      }
-  ]
+``` json
+[
+    {
+        "id":1,
+        "lastId":-1
+    },
+    {
+        "id":12,
+        "lastId":1
+    }
+]
   ```
 
 - TYPE_CHILDREN_NEXT_MODE = 1//包含下一级列表模式
