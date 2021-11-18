@@ -1,4 +1,7 @@
 # MultiLevelSelector
+<a href ="https://search.maven.org/artifact/io.github.chawloo/MultiLevelSelector">
+<img src="https://img.shields.io/maven-central/v/io.github.chawloo/MultiLevelSelector"/>
+</a>
 
 ### 介绍
 
