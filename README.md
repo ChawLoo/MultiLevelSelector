@@ -22,7 +22,7 @@ allprojects {
 }
 // Project dependencies
 dependencies {
-   implementation 'io.github.chawloo:MultiLevelSelector:1.0.1'
+   implementation 'io.github.chawloo:MultiLevelSelector:1.0.2'
 }
 ```
 
@@ -38,7 +38,7 @@ allprojects {
 }
 // Project build.gradle.kts  dependencies
 dependencies {
-   implementation("io.github.chawloo:MultiLevelSelector:1.0.3")
+   implementation("io.github.chawloo:MultiLevelSelector:1.0.2")
 }
 ```
 
