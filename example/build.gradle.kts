@@ -32,6 +32,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    namespace = "cn.chawloo.multilevelselector"
 }
 
 dependencies {

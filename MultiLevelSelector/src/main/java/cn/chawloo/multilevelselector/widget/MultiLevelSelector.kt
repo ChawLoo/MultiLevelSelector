@@ -177,10 +177,10 @@ class MultiLevelSelector<T : MultiLevelSelector.IMultiLevelEntity<T>> @JvmOverlo
     }
 
     interface IMultiLevelEntity<T> {
-        var id: Long
-        var lastId: Long
-        var showTxt: String
-        var isNew: Boolean
+        val id: Long
+        val lastId: Long
+        val showTxt: String
+        val isNew: Boolean
         val next: List<T>?
     }
 }
