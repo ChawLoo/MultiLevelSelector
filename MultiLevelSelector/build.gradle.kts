@@ -18,14 +18,14 @@ publishing {
         create<MavenPublication>("mavenKotlin") {
             groupId = "io.github.chawloo"
             artifactId = "MultiLevelSelector"
-            version = "1.0.2"
+            version = "1.0.3"
             artifact("$buildDir/outputs/aar/${project.name}-release.aar")
             artifact(androidSourcesJar)
             pom {
                 name.set("MultiLevelSelector")
                 description.set("A multi-level Selector for Android Application")
                 url.set("https://github.com/ChawLoo/MultiLevelSelector")
-                inceptionYear.set("2021")
+                inceptionYear.set("2022")
                 scm {
                     url.set("https://github.com/ChawLoo/MultiLevelSelector")
                     connection.set("scm:git:https://github.com/ChawLoo/MultiLevelSelector.git")
@@ -82,7 +82,13 @@ publishing {
     }
     repositories {
         maven {
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            val releaseRepoUrl = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            val snapshotRepoUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            url = if (version.toString().endsWith("SNAPSHOT")) {
+                snapshotRepoUrl
+            } else {
+                releaseRepoUrl
+            }
             credentials {
                 username = rootProject.properties["maven.username"].toString()
                 val pwd = rootProject.properties["maven.password"].toString()
