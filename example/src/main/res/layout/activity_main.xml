@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -24,13 +24,13 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/black" />
+        android:background="@android:color/black" />
 
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/white"
-        android:textColor="@color/black"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
         tools:text="TextView" />
 </androidx.appcompat.widget.LinearLayoutCompat>

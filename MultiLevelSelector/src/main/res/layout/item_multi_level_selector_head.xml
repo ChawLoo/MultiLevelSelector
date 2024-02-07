@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_title"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:text="请选择 >"
-        android:textColor="@color/theme_color"
-        android:textSize="15sp" />
-</LinearLayout>
+    android:layout_height="42dp"
+    android:background="@android:color/white"
+    android:drawableEnd="@drawable/selector_crumbs_right"
+    android:gravity="center"
+    android:text="请选择"
+    android:textColor="@color/selector_crumbs_text_color"
+    android:textSize="15sp" />

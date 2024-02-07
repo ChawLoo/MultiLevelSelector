@@ -1,16 +1,12 @@
 package cn.chawloo.multilevelselector
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cn.chawloo.multilevelselector.widget.MultiLevelSelector
 import cn.chawloo.multilevelselector.widget.TYPE_CHILDREN_NEXT_MODE
 import cn.chawloo.multilevelselector.widget.TYPE_ONLY_ONE_LIST_MODE
-import com.alibaba.fastjson.JSONArray
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,13 +39,11 @@ class MainActivity : AppCompatActivity() {
                 false
             }
             multiLevelSelector.setData(data) {
-                val list = it.map { d -> d.name + "->" }
-                findViewById<TextView>(R.id.tvResult).text = list.toString()
+                findViewById<TextView>(R.id.tvResult).text = joinToString("->") { it.name }
             }
         } else {
             multiLevelSelector.setData(data) {
-                val list = it.map { d -> d.name + "->" }
-                findViewById<TextView>(R.id.tvResult).text = list.toString()
+                findViewById<TextView>(R.id.tvResult).text = joinToString("->") { it.name }
             }
             multiLevelSelector.checkRepeat = {
                 false

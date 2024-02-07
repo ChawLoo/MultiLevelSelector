@@ -13,9 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
-/gradle.properties
 /gradlew
 /gradlew.bat
 /build/
 /.idea/
-/secring.gpg
+/maven.properties

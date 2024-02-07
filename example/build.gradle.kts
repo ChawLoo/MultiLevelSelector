@@ -1,16 +1,16 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("kotlinx-serialization")
 }
 
 android {
-    compileSdk = 30
-    buildToolsVersion = "30.0.3"
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "cn.chawloo.multilevelselector"
-        minSdk = 24
-        targetSdk = 30
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -23,11 +23,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        jvmToolchain(17)
     }
     buildFeatures {
         viewBinding = true
@@ -37,9 +37,7 @@ android {
 
 dependencies {
     implementation(project(":MultiLevelSelector"))
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("com.alibaba:fastjson:1.2.78")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:${rootProject.extra["kotlinVer"]}")
+    api(libs.bundles.androidx)
+    api(libs.material)
+    api(libs.kotlinx.serialization.json)
 }

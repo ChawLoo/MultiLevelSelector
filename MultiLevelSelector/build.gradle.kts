@@ -18,7 +18,7 @@ publishing {
         create<MavenPublication>("mavenKotlin") {
             groupId = "io.github.chawloo"
             artifactId = "MultiLevelSelector"
-            version = "1.0.3"
+            version = "1.1.0"
             artifact("$buildDir/outputs/aar/${project.name}-release.aar")
             artifact(androidSourcesJar)
             pom {
@@ -103,11 +103,10 @@ signing {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
-        targetSdk = 31
+        minSdk = libs.versions.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -122,11 +121,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        jvmToolchain(17)
     }
     buildFeatures {
         viewBinding = true
@@ -135,9 +134,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.5.0")
-    implementation("com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7")
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    api(libs.bundles.androidx)
+    api(libs.material)
+    api(libs.brv)
 }
