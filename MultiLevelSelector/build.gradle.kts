@@ -18,7 +18,7 @@ publishing {
         create<MavenPublication>("mavenKotlin") {
             groupId = "io.github.chawloo"
             artifactId = "MultiLevelSelector"
-            version = "1.1.0"
+            version = "1.1.1"
             artifact("$buildDir/outputs/aar/${project.name}-release.aar")
             artifact(androidSourcesJar)
             pom {

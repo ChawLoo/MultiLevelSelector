@@ -20,7 +20,7 @@ import com.drake.brv.utils.setup
 const val TYPE_ONLY_ONE_LIST_MODE = 0//同一级列表
 const val TYPE_CHILDREN_NEXT_MODE = 1//包含下一级列表模式
 
-class MultiLevelSelector<T : MultiLevelSelector.IMultiLevelEntity> @JvmOverloads constructor(
+class MultiLevelSelector<T : IMultiLevelEntity> @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
@@ -154,13 +154,5 @@ class MultiLevelSelector<T : MultiLevelSelector.IMultiLevelEntity> @JvmOverloads
                     }
                 }
             }
-    }
-
-    interface IMultiLevelEntity {
-        val id: Long
-        val lastId: Long
-        val showTxt: String
-        val isNew: Boolean
-        val next: List<IMultiLevelEntity>?
     }
 }

@@ -1,4 +1,4 @@
-package cn.chawloo.multilevelselector
+package cn.chawloo.multilevelselector.example
 
 import android.os.Bundle
 import android.widget.Button
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    lateinit var multiLevelSelector: MultiLevelSelector<Area>
+    private lateinit var multiLevelSelector: MultiLevelSelector<Area>
     override fun onStart() {
         super.onStart()
         multiLevelSelector = findViewById(R.id.multiLevel)

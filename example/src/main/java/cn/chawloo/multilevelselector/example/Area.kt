@@ -1,6 +1,6 @@
-package cn.chawloo.multilevelselector
+package cn.chawloo.multilevelselector.example
 
-import cn.chawloo.multilevelselector.widget.MultiLevelSelector
+import cn.chawloo.multilevelselector.widget.IMultiLevelEntity
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -9,7 +9,7 @@ data class Area(
     var name: String,
     var parentId: Long = 0,
     var children: List<Area>? = null
-) : MultiLevelSelector.IMultiLevelEntity {
+) : IMultiLevelEntity {
     override var id: Long = code
     override var lastId: Long = parentId
     override var showTxt: String = name

@@ -8,7 +8,7 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "cn.chawloo.multilevelselector"
+        applicationId = "cn.chawloo.multilevelselector.example"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
@@ -17,7 +17,14 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        debug {
+            isDebuggable = true
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+        }
+        release {
+            isDebuggable = false
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
@@ -32,7 +39,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace = "cn.chawloo.multilevelselector"
+    namespace = "cn.chawloo.multilevelselector.example"
 }
 
 dependencies {

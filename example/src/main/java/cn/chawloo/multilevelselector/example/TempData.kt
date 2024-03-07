@@ -1,4 +1,4 @@
-package cn.chawloo.multilevelselector
+package cn.chawloo.multilevelselector.example
 
 import cn.chawloo.multilevelselector.widget.TYPE_ONLY_ONE_LIST_MODE
 import kotlinx.serialization.ExperimentalSerializationApi
